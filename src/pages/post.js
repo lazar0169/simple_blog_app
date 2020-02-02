@@ -19,7 +19,9 @@ class Post extends React.Component {
     }
 
     removePost = async () => {
-        await axios.delete(`http://localhost:5000/posts/${this.props.match.params.id}`);
+        await axios.delete(`http://localhost:5000/posts/${this.props.match.params.id}&${localStorage.getItem('id')}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        });
         window.location.pathname = '/posts';
     }
 
@@ -48,7 +50,8 @@ class Post extends React.Component {
                 <h3 className='title'>{post.title}</h3>
                 <div className='body'>{post.body}</div>
                 <div className='dateTime'>
-                    <span>{`${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`}</span> &nbsp;
+                    <span>{post.user}</span> at
+                    <span>{`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`}</span>
                     <span>{`${date.getHours()}:${date.getMinutes()}`}</span>
                 </div>
                 <span className='tags'>{
@@ -57,7 +60,7 @@ class Post extends React.Component {
                     })
                 }</span>
                 {
-                    localStorage.getItem('token') ? <React.Fragment>
+                    localStorage.getItem('token') && localStorage.getItem('id') === this.state.userId ? <React.Fragment>
                         <button className='changeButton' onClick={this.gotoChange}><span role='img' aria-label='change'>🖊</span> Change</button>
                         <button className='removeButton' onClick={this.removePost}><span role='img' aria-label='remove'>✖</span> Remove</button>
                     </React.Fragment> : <React.Fragment></React.Fragment>

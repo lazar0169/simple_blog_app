@@ -13,7 +13,8 @@ class PostItem extends React.Component {
                 <h3 className='title'>{post.title}</h3>
                 <div className='body' >{post.body}</div>
                 <div className='dateTime'>
-                    <span>{`${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`}</span> &nbsp;
+                    <span>{post.user}</span> at
+                    <span>{`${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`}</span>
                     <span>{`${date.getHours()}:${date.getMinutes()}`}</span>
                 </div>
                 <span className='tags'>{

@@ -22,6 +22,7 @@ class Posts extends React.Component {
 
     handleLogout = () => {
         localStorage.removeItem('name');
+        localStorage.removeItem('id');
         localStorage.removeItem('token');
         window.location.pathname = `/posts`;
     }
@@ -32,7 +33,7 @@ class Posts extends React.Component {
 
     async getPosts() {
         const res = await axios.get('http://localhost:5000/posts');
-        this.setState({ posts: res.data });
+        this.setState({ posts: res.data.reverse() });
     }
 
     render() {

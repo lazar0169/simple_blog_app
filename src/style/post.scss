@@ -23,6 +23,21 @@
         margin: 0 0.2em;
     }
 
+    .dateTime {
+        span:nth-child(1) {
+            background-color: #b1cfd8;
+            border: 1px solid #6574bb;
+            margin: 0 0.2em;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        span {
+            margin: 0 0.5em;
+        }
+    }
+
     .tags {
         span {
             background-color: #b1d8b9;

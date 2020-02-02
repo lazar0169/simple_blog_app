@@ -7,7 +7,8 @@ class Post extends React.Component {
         title: '',
         createdAt: '',
         tags: '',
-        body: ''
+        body: '',
+        userId: localStorage.getItem('id')
     }
 
     titleChange = (event) => {
@@ -37,14 +38,21 @@ class Post extends React.Component {
 
     submitPost = () => {
         let res;
-        const tags = this.state.tags.trim().split(',');
+        let tags = this.state.tags;
+        try {
+            tags = this.state.tags.trim().split(',');
+        } catch (error) { }
         this.setState({
             tags: tags
         }, async () => {
             if (this.state._id !== undefined) {
-                res = await axios.post(`http://localhost:5000/posts/${this.state._id}`, this.state);
+                res = await axios.post(`http://localhost:5000/posts/${this.state._id}`, this.state, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
             } else {
-                res = await axios.post(`http://localhost:5000/posts`, this.state);
+                res = await axios.post(`http://localhost:5000/posts`, this.state, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                });
             }
             this.setState(res.data);
             window.location.pathname = `/posts/${this.state._id}`;
