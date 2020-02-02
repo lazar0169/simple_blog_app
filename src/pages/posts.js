@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import PostItem from './postItem';
+import PostItem from '../components/postItem';
 import '../style/posts.scss';
 
 class Posts extends React.Component {
