@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Posts from './components/posts';
-import Post from './components/post';
+import Post from './pages/post';
 import PostForm from './components/postForm';
+import Home from './pages/home';
 
 class App extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
                 <Route path="/posts/create" component={PostForm} />
                 <Route path="/posts/:id" component={Post} />
                 <Route path="/posts" component={Posts} />
+                <Route path="/" component={Home} />
             </Switch>
         </BrowserRouter>
     }
