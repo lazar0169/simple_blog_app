@@ -1,0 +1,41 @@
+.postWrapper {
+    width: 80%;
+    margin: auto;
+    font-family: Sans-serif;
+
+    .createButton {
+        width: 100%;
+        margin: 1em 0 5em 0;
+    }
+
+    .postButton {
+        width: 100%;
+        text-align: left;
+        background-color: #f1f1f1;
+        border: 1px solid #cacaca;
+        border-radius: 3px;
+        margin-bottom: 0.5em;
+        padding-bottom: 0.5em;
+
+        .body {
+            margin-bottom: 1em;
+        }
+
+        .dateTime, .tags {
+            font-size: 10pt;
+            color: #5d5d5d;
+            margin: 1em 0;
+        }
+
+        .tags {
+            span {
+                background-color: #b1d8b9;
+                border: 1px solid #65bb65;
+                margin: 0 0.2em;
+                padding: 0.1em 0.3em;
+                border-radius: 3px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}

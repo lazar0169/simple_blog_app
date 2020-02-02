@@ -1,0 +1,38 @@
+.post {
+    width: 100%;
+    font-family: Sans-serif;
+
+    .body {
+        height: 50vh;
+        overflow: auto;
+    }
+
+    .dateTime, .tags {
+        font-size: 10pt;
+        color: #5d5d5d;
+    }
+
+    .tags {
+        span {
+            background-color: #b1d8b9;
+            border: 1px solid #65bb65;
+            margin: 0 0.2em;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+        }
+    }
+
+    button {
+        display: block;
+        margin: 1em 0;
+        border: 1px solid #ababab;
+        border-radius: 5px;
+    }
+    
+    .removeButton {
+        background-color: red;
+        color: white;
+        border: 1px solid #a87c7c;
+
+    }
+}

@@ -1,0 +1,23 @@
+.postForm {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10%;
+    font-family: Sans-serif;
+
+    label {
+        font-size: 10pt;
+    }
+
+    input,
+    textarea,
+    button {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 1em 0;
+    }
+
+    textarea {
+        height: 50vh;
+        resize: none;
+    }
+}
