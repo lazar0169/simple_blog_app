@@ -16,6 +16,12 @@
         margin: 1em 0;
     }
 
+    button {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     textarea {
         height: 50vh;
         resize: none;

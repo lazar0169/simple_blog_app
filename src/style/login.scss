@@ -6,6 +6,10 @@
 
     .registerButton {
         float: right;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     input,
@@ -17,5 +21,10 @@
 
     .loginButton {
         width: 100%;
+        
+        &:hover {
+            cursor: pointer;
+        }
+
     }
 }
