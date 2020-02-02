@@ -4,6 +4,8 @@ import Posts from './pages/posts';
 import Post from './pages/post';
 import PostForm from './components/postForm';
 import Home from './pages/home';
+import Login from './pages/login';
+import Register from './pages/register';
 
 class App extends React.Component {
     render() {
@@ -13,6 +15,8 @@ class App extends React.Component {
                 <Route path="/posts/create" component={PostForm} />
                 <Route path="/posts/:id" component={Post} />
                 <Route path="/posts" component={Posts} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 <Route path="/" component={Home} />
             </Switch>
         </BrowserRouter>

@@ -2,14 +2,25 @@
     width: 100%;
     font-family: Sans-serif;
 
+    .title {
+        text-align: center;
+    }
+
     .body {
         height: 50vh;
         overflow: auto;
+        background-color: #e0efe7;
+        box-sizing: border-box;
+        padding: 1em;
+        margin-bottom: 1em;
     }
 
-    .dateTime, .tags {
+    .dateTime,
+    .tags {
         font-size: 10pt;
         color: #5d5d5d;
+        display: inline;
+        margin: 0 0.2em;
     }
 
     .tags {
@@ -28,11 +39,10 @@
         border: 1px solid #ababab;
         border-radius: 5px;
     }
-    
+
     .removeButton {
         background-color: red;
         color: white;
         border: 1px solid #a87c7c;
-
     }
 }

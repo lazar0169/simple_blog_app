@@ -3,9 +3,26 @@
     margin: auto;
     font-family: Sans-serif;
 
-    .createButton {
+    .topBar {
         width: 100%;
-        margin: 1em 0 5em 0;
+        text-align: right;
+        background-color: #1a7321;
+        color: white;
+        box-sizing: border-box;
+        margin-bottom: 1em;
+        padding: 0.4em;
+        border-radius: 0.2em;
+    }
+
+    .registerButton {
+        display: inline;
+        margin: 1em 0 5em 1em;
+    }
+
+    .createButton {
+        margin: 1em 0 5em 1em;
+        width: 20vw;
+        min-width: fit-content;
     }
 
     .postButton {
@@ -21,7 +38,8 @@
             margin-bottom: 1em;
         }
 
-        .dateTime, .tags {
+        .dateTime,
+        .tags {
             font-size: 10pt;
             color: #5d5d5d;
             margin: 1em 0;

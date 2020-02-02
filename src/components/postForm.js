@@ -66,18 +66,18 @@ class Post extends React.Component {
         const post = this.state;
         return (
             <div className='postForm'>
-                <button onClick={this.goBack}>Back</button>
+                <button onClick={this.goBack}><span role='img' aria-label='back'>◀</span> Back</button>
 
                 <label>Post title:</label>
                 <input onChange={this.titleChange} value={post.title}></input>
 
                 <label>Content:</label>
                 <textarea onChange={this.bodyChange} value={post.body}></textarea>
-                
+
                 <label>Tags (separated with comma):</label>
                 <input onChange={this.tagsChange} value={this.state.tags}></input>
 
-                <button className='submitButton' onClick={this.submitPost}>Submit</button>
+                <button className='submitButton' onClick={this.submitPost}><span role='img' aria-label='ok'>✔</span> Submit</button>
             </div>
         );
     }

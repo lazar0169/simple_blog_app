@@ -43,8 +43,8 @@ class Post extends React.Component {
         const date = new Date(post.createdAt);
         return (
             <div className='post'>
-                <button onClick={this.goBack}>Back</button>
-                
+                <button onClick={this.goBack}><span role='img' aria-label='back'>◀</span> Back</button>
+
                 <h3 className='title'>{post.title}</h3>
                 <div className='body'>{post.body}</div>
                 <div className='dateTime'>
@@ -56,8 +56,13 @@ class Post extends React.Component {
                         return (<span key={tag}>{`#${tag}`}</span>);
                     })
                 }</span>
-                <button className='changeButton' onClick={this.gotoChange}>Change</button>
-                <button className='removeButton' onClick={this.removePost}>Remove</button>
+                {
+                    localStorage.getItem('token') ? <React.Fragment>
+                        <button className='changeButton' onClick={this.gotoChange}><span role='img' aria-label='change'>🖊</span> Change</button>
+                        <button className='removeButton' onClick={this.removePost}><span role='img' aria-label='remove'>✖</span> Remove</button>
+                    </React.Fragment> : <React.Fragment></React.Fragment>
+                }
+
             </div>
         );
     }

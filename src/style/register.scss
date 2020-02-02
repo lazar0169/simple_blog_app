@@ -1,0 +1,21 @@
+.registerWrapper {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 30%;
+    font-family: Sans-serif;
+
+    .loginButton {
+        float: right;
+    }
+
+    input,
+    label {
+        display: block;
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    .registerButton {
+        width: 100%;
+    }
+}
