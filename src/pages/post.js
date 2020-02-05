@@ -4,10 +4,14 @@ import '../style/post.scss';
 
 class Post extends React.Component {
     state = {
+        id: '',
         title: '',
         createdAt: '',
-        tags: [],
-        body: ''
+        tags: '',
+        body: '',
+        user: '',
+        userId: '',
+        updatedAt: '',
     }
 
     goBack = () => {
@@ -15,11 +19,11 @@ class Post extends React.Component {
     }
 
     gotoChange = async () => {
-        window.location.pathname = `/posts/change/${this.state._id}`;
+        window.location.pathname = `/posts/change/${this.state.id}`;
     }
 
     removePost = async () => {
-        await axios.delete(`http://localhost:5000/posts/${this.props.match.params.id}&${localStorage.getItem('id')}`, {
+        await axios.delete(`http://localhost:5000/posts/${this.props.match.params.id}/${localStorage.getItem('id')}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         window.location.pathname = '/posts';
@@ -55,7 +59,7 @@ class Post extends React.Component {
                     <span>{`${date.getHours()}:${date.getMinutes()}`}</span>
                 </div>
                 <span className='tags'>{
-                    post.tags.map((tag) => {
+                    post.tags.trim().split(',').map((tag) => {
                         return (<span key={tag}>{`#${tag}`}</span>);
                     })
                 }</span>

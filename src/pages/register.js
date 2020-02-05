@@ -4,7 +4,8 @@ import '../style/register.scss';
 
 class Register extends React.Component {
     state = {
-        name: '',
+        username: '',
+        email: '',
         password: ''
     }
 
@@ -45,6 +46,8 @@ class Register extends React.Component {
                 <button type='button' className='loginButton' onClick={this.gotoLogin}><span role='img' aria-label='login'>🔓</span> Login</button>
                 <label>User name:</label>
                 <input onChange={this.handleNameChange} value={this.state.name}></input>
+                <label>Email:</label>
+                <input onChange={this.handleEmailChange} value={this.state.email}></input>
                 <label>Password:</label>
                 <input onChange={this.handlePasswordChange} value={this.state.password}></input>
                 <button type='submit' className='registerButton' onClick={this.handleRegister}><span role='img' aria-label='ok'>✔</span> Register</button>

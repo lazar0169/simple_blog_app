@@ -50,7 +50,7 @@ class Posts extends React.Component {
                         </React.Fragment>
                 }
                 {
-                    this.state.posts.map((post) => { return <PostItem key={post._id} post={post} /> })
+                    this.state.posts.map((post) => { return <PostItem key={post.id} post={post} /> })
                 }
             </div>
         )

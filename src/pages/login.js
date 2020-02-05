@@ -4,7 +4,7 @@ import '../style/login.scss';
 
 class Login extends React.Component {
     state = {
-        name: '',
+        email: '',
         password: ''
     }
 
@@ -18,10 +18,10 @@ class Login extends React.Component {
         window.location.pathname = '/posts';
     }
 
-    handleNameChange = (event) => {
+    handleEmailChange = (event) => {
         const value = event.target.value;
         this.setState({
-            name: value
+            email: value
         });
     }
 
@@ -35,8 +35,9 @@ class Login extends React.Component {
     handleLogin = async (e) => {
         e.preventDefault();
         const res = await axios.post(`http://localhost:5000/login`, this.state);
-        localStorage.setItem('name', res.data.user.name);
-        localStorage.setItem('id', res.data.user._id);
+        localStorage.setItem('name', res.data.user.username);
+        localStorage.setItem('email', res.data.user.email);
+        localStorage.setItem('id', res.data.user.id);
         localStorage.setItem('token', res.data.token);
         window.location.pathname = '/posts';
     }
@@ -52,8 +53,8 @@ class Login extends React.Component {
             <form onSubmit={this.handleLogin} className='loginWrapper'>
                 <button type='button' className='browseButton' onClick={this.gotoBrowse}><span role='img' aria-label='back'>◀</span> Back</button>
                 <button type='button' className='registerButton' onClick={this.gotoRegister}><span role='img' aria-label='create'>📝</span> Register</button>
-                <label>User name:</label>
-                <input onChange={this.handleNameChange} value={this.state.name}></input>
+                <label>Email:</label>
+                <input onChange={this.handleEmailChange} defaultValue={this.state.email}></input>
                 <label>Password:</label>
                 <input onChange={this.handlePasswordChange} value={this.state.password}></input>
                 <button type='submit' className='loginButton' onClick={this.handleLogin}><span role='img' aria-label='ok'>✔</span> Login</button>

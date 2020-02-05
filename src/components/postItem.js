@@ -2,7 +2,7 @@ import React from 'react';
 
 class PostItem extends React.Component {
     gotoPost = id => {
-        window.location.pathname = `/posts/${this.props.post._id}`
+        window.location.pathname = `/posts/${this.props.post.id}`
     }
 
     render() {
@@ -18,7 +18,7 @@ class PostItem extends React.Component {
                     <span>{`${date.getHours()}:${date.getMinutes()}`}</span>
                 </div>
                 <span className='tags'>{
-                    post.tags.map((tag) => {
+                    post.tags.trim().split(',').map((tag) => {
                         return (<span key={tag}>{`#${tag}`}</span>);
                     })
                 }</span>

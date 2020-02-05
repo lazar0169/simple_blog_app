@@ -4,11 +4,14 @@ import '../style/postForm.scss';
 
 class Post extends React.Component {
     state = {
+        id: '',
         title: '',
         createdAt: '',
         tags: '',
         body: '',
-        userId: localStorage.getItem('id')
+        user: '',
+        userId: localStorage.getItem('id'),
+        updatedAt: ''
     }
 
     titleChange = (event) => {
@@ -36,27 +39,17 @@ class Post extends React.Component {
         window.location.pathname = '/posts';
     }
 
-    submitPost = () => {
-        let res;
-        let tags = this.state.tags;
-        try {
-            tags = this.state.tags.trim().split(',');
-        } catch (error) { }
-        this.setState({
-            tags: tags
-        }, async () => {
-            if (this.state._id !== undefined) {
-                res = await axios.post(`http://localhost:5000/posts/${this.state._id}`, this.state, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-                });
-            } else {
-                res = await axios.post(`http://localhost:5000/posts`, this.state, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-                });
-            }
-            this.setState(res.data);
-            window.location.pathname = `/posts/${this.state._id}`;
-        });
+    submitPost = async () => {
+        if (this.state.id) {
+            await axios.post(`http://localhost:5000/posts/${this.state.id}`, this.state, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+        } else {
+            await axios.post(`http://localhost:5000/posts`, this.state, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            });
+        }
+        window.location.pathname = `/posts/${this.state.id}`;
     }
 
     componentDidMount() {
@@ -66,7 +59,6 @@ class Post extends React.Component {
     async getPost() {
         if (this.props.match.params.id === undefined) return;
         const res = await axios.get(`http://localhost:5000/posts/${this.props.match.params.id}`);
-        res.data.tags = res.data.tags.join(',');
         this.setState(res.data);
     }
 
