@@ -35,7 +35,7 @@ class Login extends React.Component {
     handleLogin = async (e) => {
         e.preventDefault();
         const res = await axios.post(`http://localhost:5000/login`, this.state);
-        localStorage.setItem('name', res.data.user.username);
+        localStorage.setItem('username', res.data.user.username);
         localStorage.setItem('email', res.data.user.email);
         localStorage.setItem('id', res.data.user.id);
         localStorage.setItem('token', res.data.token);

@@ -41,7 +41,7 @@ class Posts extends React.Component {
             <div className='postWrapper'>
                 {
                     localStorage.getItem('token') ? <React.Fragment>
-                        <div className='topBar'><span role='img' aria-label='avatar'>🤠</span> {localStorage.getItem('name')}</div>
+                        <div className='topBar'><span role='img' aria-label='avatar'>🤠</span> {localStorage.getItem('username')}</div>
                         <button className='logoutButton' onClick={this.handleLogout}><span role='img' aria-label='logout'>👋</span> Logout</button>
                         <button className='createButton' onClick={this.handleCreate}><span role='img' aria-label='create'>✍</span> Create</button>
                     </React.Fragment> : <React.Fragment>

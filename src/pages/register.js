@@ -22,7 +22,14 @@ class Register extends React.Component {
     handleNameChange = (event) => {
         const value = event.target.value;
         this.setState({
-            name: value
+            username: value
+        });
+    }
+    
+    handleEmailChange = (event) => {
+        const value = event.target.value;
+        this.setState({
+            email: value
         });
     }
 
@@ -45,7 +52,7 @@ class Register extends React.Component {
                 <button type='button' className='browseButton' onClick={this.gotoBrowse}><span role='img' aria-label='back'>◀</span> Back</button>
                 <button type='button' className='loginButton' onClick={this.gotoLogin}><span role='img' aria-label='login'>🔓</span> Login</button>
                 <label>User name:</label>
-                <input onChange={this.handleNameChange} value={this.state.name}></input>
+                <input onChange={this.handleNameChange} value={this.state.username}></input>
                 <label>Email:</label>
                 <input onChange={this.handleEmailChange} value={this.state.email}></input>
                 <label>Password:</label>

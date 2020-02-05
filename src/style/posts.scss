@@ -29,7 +29,6 @@
         &:hover {
             cursor: pointer;
         }
-
     }
 
     .postButton {
@@ -40,14 +39,50 @@
         border-radius: 3px;
         margin-bottom: 0.5em;
         padding-bottom: 0.5em;
+        padding: 0 1em;
 
-        &:hover {
-            background-color: #dcf1e2;
+        .title:hover {
+            color: #00b216;
             cursor: pointer;
         }
 
         .body {
             margin-bottom: 1em;
+        }
+
+        .newCommentForm {
+            display: block;
+            box-sizing: border-box;
+            padding: 1em 0.5em;
+            margin: 1em 0;
+            border: 1px solid;
+            border-bottom: none;
+
+            input {
+                width: 99.4%;
+                margin-bottom: 1em;
+            }
+
+            button {
+                display: block;
+            }
+        }
+
+        .commentWrapper {
+            border: 1px solid;
+            border-top: none;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+            padding: 0 0.5em;
+
+            .comment {
+                box-sizing: border-box;
+                border-bottom: 1px dashed #00000040;
+            }
+
+            .comment:last-child {
+                border-bottom: none;
+            }
         }
 
         .dateTime,
