@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getPost, removePost } from '../communication/comm';
 import '../style/post.scss';
 
@@ -15,7 +16,7 @@ class Post extends React.Component {
 
     render() {
         const post = this.props.post;
-        if (Object.keys(post).length === 0) return(<React.Fragment></React.Fragment>);
+        if (Object.keys(post).length === 0) return (<React.Fragment></React.Fragment>);
         const date = new Date(post.createdAt);
         return (
             <div className='post'>
@@ -44,6 +45,19 @@ class Post extends React.Component {
         );
     }
 }
+
+Post.propTypes = {
+    post: PropTypes.shape({
+        body: PropTypes.string,
+        createdAt: PropTypes.string,
+        id: PropTypes.number,
+        tags: PropTypes.string,
+        title: PropTypes.string,
+        updatedAt: PropTypes.string,
+        user: PropTypes.string,
+        userId: PropTypes.string
+    })
+};
 
 const mapStateToProps = (state) => {
     return {

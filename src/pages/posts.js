@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getPosts } from '../communication/comm';
 import PostItem from '../components/postItem';
 import '../style/posts.scss';
@@ -37,6 +38,30 @@ class Posts extends React.Component {
             </div>
         )
     }
+}
+
+Posts.propTypes = {
+    posts: PropTypes.arrayOf(
+        PropTypes.shape({
+            body: PropTypes.string,
+            comments: PropTypes.arrayOf(
+                PropTypes.shape({
+                    body: PropTypes.string,
+                    createdAt: PropTypes.string,
+                    id: PropTypes.number,
+                    updatedAt: PropTypes.string,
+                    user: PropTypes.string
+                })),
+            createdAt: PropTypes.string,
+            id: PropTypes.number,
+            likes: PropTypes.arrayOf(PropTypes.number),
+            tags: PropTypes.string,
+            title: PropTypes.string,
+            updatedAt: PropTypes.string,
+            user: PropTypes.string,
+            userId: PropTypes.string
+        })
+    )
 }
 
 const mapStateToProps = (state) => {

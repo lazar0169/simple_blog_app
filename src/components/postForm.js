@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { updatePost, createPost } from '../communication/comm';
 import '../style/postForm.scss';
@@ -46,7 +47,6 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        console.log(`/posts/${this.props.post.id}`);
         if (this.props.match.path !== '/posts/create') {
             const { title, tags, body } = this.props.post;
             this.setState({ title, tags, body });
@@ -73,6 +73,19 @@ class Post extends React.Component {
         );
     }
 }
+
+Post.propTypes = {
+    post: PropTypes.shape({
+        body: PropTypes.string,
+        createdAt: PropTypes.string,
+        id: PropTypes.number,
+        tags: PropTypes.string,
+        title: PropTypes.string,
+        updatedAt: PropTypes.string,
+        user: PropTypes.string,
+        userId: PropTypes.string
+    })
+};
 
 const mapStateToProps = (state) => {
     return {

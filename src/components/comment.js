@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Comment extends React.Component {
 
@@ -16,5 +17,17 @@ class Comment extends React.Component {
         );
     }
 }
+
+Comment.propTypes = {
+    comments: PropTypes.arrayOf(
+        PropTypes.shape({
+            body: PropTypes.string,
+            createdAt: PropTypes.string,
+            id: PropTypes.number,
+            updatedAt: PropTypes.string,
+            user: PropTypes.string
+        }))
+}
+
 
 export default Comment;

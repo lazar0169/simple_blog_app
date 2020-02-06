@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Comment from './comment';
 import { submitComment, likeOrDislike } from '../communication/comm'
 
@@ -85,6 +86,28 @@ class PostItem extends React.Component {
             </div>
         );
     }
+}
+
+PostItem.propTypes = {
+    post: PropTypes.shape({
+        body: PropTypes.string,
+        comments: PropTypes.arrayOf(
+            PropTypes.shape({
+                body: PropTypes.string,
+                createdAt: PropTypes.string,
+                id: PropTypes.number,
+                updatedAt: PropTypes.string,
+                user: PropTypes.string
+            })),
+        createdAt: PropTypes.string,
+        id: PropTypes.number,
+        likes: PropTypes.arrayOf(PropTypes.number),
+        tags: PropTypes.string,
+        title: PropTypes.string,
+        updatedAt: PropTypes.string,
+        user: PropTypes.string,
+        userId: PropTypes.string
+    })
 }
 
 export default PostItem;
