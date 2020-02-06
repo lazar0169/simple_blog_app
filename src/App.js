@@ -6,6 +6,7 @@ import PostForm from './components/postForm';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
+import User from './pages/user';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -21,6 +22,7 @@ class App extends React.Component {
                     <Route path="/posts" component={Posts} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
+                    <Route path="/profile" component={User} />
                     <Route path="/" component={Home} />
                 </Switch>
             </Provider>

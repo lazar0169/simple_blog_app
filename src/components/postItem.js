@@ -59,7 +59,13 @@ class PostItem extends React.Component {
                         return (<span key={tag}>{`#${tag}`}</span>);
                     })
                 }</span>
-                <span className='likes'><span onClick={this.handleLike} className={post.likes.includes(Number(localStorage.getItem('id'))) ? 'likeButton liked' : 'likeButton'} role='img' aria-label='ok'>♥</span> <span className='likesCount'>{likesCount}</span>people liked this</span>
+                <span className='likes'>
+                    {
+                        localStorage.getItem('token') ?
+                            <span onClick={this.handleLike} className={post.likes.includes(Number(localStorage.getItem('id'))) ? 'likeButton liked' : 'likeButton'} role='img' aria-label='ok'>♥</span>
+                            : ''
+                    }
+                    <span className='likesCount'>{likesCount}</span>people liked this</span>
                 {
                     localStorage.getItem('token') ? <React.Fragment>
                         <form className="newCommentForm">
@@ -71,10 +77,10 @@ class PostItem extends React.Component {
                 <hr></hr>
                 <div className="commentWrapper">{
                     post.comments.length !== 0 ?
-                    post.comments.map((comment) => {
-                        return <Comment key={comment.id} comment={comment}></Comment>
-                    }).reverse() :
-                    <i>No comments yet</i>
+                        post.comments.map((comment) => {
+                            return <Comment key={comment.id} comment={comment}></Comment>
+                        }).reverse() :
+                        <i>No comments yet</i>
                 }</div>
             </div>
         );

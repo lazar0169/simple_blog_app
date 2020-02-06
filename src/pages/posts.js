@@ -7,9 +7,10 @@ import '../style/posts.scss';
 
 class Posts extends React.Component {
     handleLogout = () => {
-        localStorage.removeItem('name');
+        localStorage.removeItem('username');
         localStorage.removeItem('id');
         localStorage.removeItem('token');
+        localStorage.removeItem('email');
         window.location.pathname = `/posts`;
     }
 
@@ -22,7 +23,7 @@ class Posts extends React.Component {
             <div className='postWrapper'>
                 {
                     localStorage.getItem('token') ? <React.Fragment>
-                        <div className='topBar'><span role='img' aria-label='avatar'>🤠</span> {localStorage.getItem('username')}</div>
+                        <div className='topBar'><Link to='/profile'><span role='img' aria-label='avatar'>🤠</span> {localStorage.getItem('username')}</Link></div>
                         <button className='logoutButton' onClick={this.handleLogout}><span role='img' aria-label='logout'>👋</span> Logout</button>
                         <Link to='/posts/create' className='createButton' onClick={this.handleCreate}><span role='img' aria-label='create'>✍</span> Create</Link>
                     </React.Fragment> : <React.Fragment>

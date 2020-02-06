@@ -12,6 +12,12 @@
         margin-bottom: 1em;
         padding: 0.4em;
         border-radius: 0.2em;
+
+        a {
+            background-color: transparent;
+            color: white;
+            border: none;
+        }
     }
 
     .registerButton {
