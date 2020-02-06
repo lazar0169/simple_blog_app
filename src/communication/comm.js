@@ -24,7 +24,7 @@ export const removePost = async (id) => {
         await axios.delete(`http://localhost:5000/posts/${id}/${localStorage.getItem('id')}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
-        store.dispatch({ type: 'DELETE_POST', data: id });
+        // store.dispatch({ type: 'DELETE_POST', data: id });
         window.location.pathname = '/posts';
     } catch (error) {
         console.log(error);
