@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '../style/register.scss';
 
 class Register extends React.Component {
@@ -9,23 +10,13 @@ class Register extends React.Component {
         password: ''
     }
 
-    gotoLogin = (e) => {
-        e.preventDefault();
-        window.location.pathname = '/login';
-    }
-
-    gotoBrowse = (e) => {
-        e.preventDefault();
-        window.location.pathname = '/posts';
-    }
-
     handleNameChange = (event) => {
         const value = event.target.value;
         this.setState({
             username: value
         });
     }
-    
+
     handleEmailChange = (event) => {
         const value = event.target.value;
         this.setState({
@@ -49,8 +40,8 @@ class Register extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleRegister} className='registerWrapper'>
-                <button type='button' className='browseButton' onClick={this.gotoBrowse}><span role='img' aria-label='back'>◀</span> Back</button>
-                <button type='button' className='loginButton' onClick={this.gotoLogin}><span role='img' aria-label='login'>🔓</span> Login</button>
+                <Link to='/posts' className='browseButton'><span role='img' aria-label='back'>◀</span> Back</Link>
+                <Link to='/login' className='loginButton'><span role='img' aria-label='login'>🔓</span> Login</Link>
                 <label>User name:</label>
                 <input onChange={this.handleNameChange} value={this.state.username}></input>
                 <label>Email:</label>

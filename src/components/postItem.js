@@ -1,15 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Comment from './comment';
-import axios from 'axios';
+import { submitComment, likeOrDislike } from '../communication/comm'
 
 class PostItem extends React.Component {
     state = {
         likes: [],
         newComment: ''
-    }
-
-    gotoPost = id => {
-        window.location.pathname = `/posts/${this.props.post.id}`
     }
 
     commentChange = (event) => {
@@ -19,12 +16,16 @@ class PostItem extends React.Component {
         });
     }
 
+    handleLike = () => {
+        const userId = localStorage.getItem('id');
+        const postId = this.props.post.id;
+        likeOrDislike({ userId, postId });
+    }
+
     sumbitComment = async () => {
         const userId = localStorage.getItem('id');
         const postId = this.props.post.id;
-        await axios.post(`http://localhost:5000/posts/comment`, { body: this.state.newComment, userId, postId }, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        submitComment({ body: this.state.newComment, userId, postId });
     }
 
     renderComment = comment => {
@@ -42,11 +43,11 @@ class PostItem extends React.Component {
 
     render() {
         const { post } = this.props;
-        post.comments.reverse();
         const date = new Date(post.createdAt);
+        const likesCount = post.likes.length;
         return (
             <div className='postButton'>
-                <h3 onClick={this.gotoPost} className='title'>{post.title}</h3>
+                <Link to={`/posts/${this.props.post.id}`} className='title'>{post.title}</Link>
                 <div className='body' >{post.body}</div>
                 <div className='dateTime'>
                     <span>{post.user}</span> at
@@ -58,6 +59,7 @@ class PostItem extends React.Component {
                         return (<span key={tag}>{`#${tag}`}</span>);
                     })
                 }</span>
+                <span className='likes'><span onClick={this.handleLike} className={post.likes.includes(Number(localStorage.getItem('id'))) ? 'likeButton liked' : 'likeButton'} role='img' aria-label='ok'>♥</span> <span className='likesCount'>{likesCount}</span>people liked this</span>
                 {
                     localStorage.getItem('token') ? <React.Fragment>
                         <form className="newCommentForm">
@@ -68,9 +70,11 @@ class PostItem extends React.Component {
                 }
                 <hr></hr>
                 <div className="commentWrapper">{
+                    post.comments.length !== 0 ?
                     post.comments.map((comment) => {
                         return <Comment key={comment.id} comment={comment}></Comment>
-                    })
+                    }).reverse() :
+                    <i>No comments yet</i>
                 }</div>
             </div>
         );

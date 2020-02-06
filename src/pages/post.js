@@ -1,55 +1,25 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getPost, removePost } from '../communication/comm';
 import '../style/post.scss';
 
 class Post extends React.Component {
-    state = {
-        id: '',
-        title: '',
-        createdAt: '',
-        tags: '',
-        body: '',
-        user: '',
-        userId: '',
-        updatedAt: '',
-    }
-
-    goBack = () => {
-        window.location.pathname = '/posts';
-    }
-
-    gotoChange = async () => {
-        window.location.pathname = `/posts/change/${this.state.id}`;
-    }
-
     removePost = async () => {
-        await axios.delete(`http://localhost:5000/posts/${this.props.match.params.id}/${localStorage.getItem('id')}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
-        window.location.pathname = '/posts';
+        removePost(this.props.match.params.id);
     }
 
     componentDidMount() {
-        this.getPost();
-    }
-
-    async getPost() {
-        try {
-            const res = await axios.get(`http://localhost:5000/posts/${this.props.match.params.id}`);
-            this.setState(res.data);
-        } catch (error) {
-            if (error.response.status === 404) {
-                window.location.pathname = '/posts';
-            }
-        }
+        getPost(this.props.match.params.id);
     }
 
     render() {
-        const post = this.state;
+        const post = this.props.post;
+        if (Object.keys(post).length === 0) return(<React.Fragment></React.Fragment>);
         const date = new Date(post.createdAt);
         return (
             <div className='post'>
-                <button onClick={this.goBack}><span role='img' aria-label='back'>◀</span> Back</button>
+                <Link to='/posts'><span role='img' aria-label='back'>◀</span> Back</Link>
 
                 <h3 className='title'>{post.title}</h3>
                 <div className='body'>{post.body}</div>
@@ -64,8 +34,8 @@ class Post extends React.Component {
                     })
                 }</span>
                 {
-                    localStorage.getItem('token') && localStorage.getItem('id') === this.state.userId ? <React.Fragment>
-                        <button className='changeButton' onClick={this.gotoChange}><span role='img' aria-label='change'>🖊</span> Change</button>
+                    localStorage.getItem('token') && localStorage.getItem('id') === post.userId ? <React.Fragment>
+                        <Link to={`/posts/change/${this.props.match.params.id}`} className='changeButton'><span role='img' aria-label='change'>🖊</span> Change</Link>
                         <button className='removeButton' onClick={this.removePost}><span role='img' aria-label='remove'>✖</span> Remove</button>
                     </React.Fragment> : <React.Fragment></React.Fragment>
                 }
@@ -75,4 +45,10 @@ class Post extends React.Component {
     }
 }
 
-export default Post;
+const mapStateToProps = (state) => {
+    return {
+        post: state.postReducer.selectedPost
+    }
+};
+
+export default connect(mapStateToProps)(Post);

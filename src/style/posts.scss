@@ -41,6 +41,13 @@
         padding-bottom: 0.5em;
         padding: 0 1em;
 
+        .title {
+            border: none;
+            font-size: 1.8em;
+            padding-left: 0;
+            margin-bottom: 0.5em;
+        }
+
         .title:hover {
             color: #00b216;
             cursor: pointer;
@@ -48,6 +55,37 @@
 
         .body {
             margin-bottom: 1em;
+        }
+
+        .likes {
+            display: block;
+            margin-top: 0.8em;
+
+            .likeButton {
+                background-color: transparent;
+                color: red;
+                margin-right: 0.4em;
+                width: 2em;
+                height: 2em;
+                box-sizing: border-box;
+                border: 1px solid red;
+                border-radius: 100px;
+                justify-content: center;
+                align-items: center;
+                display: inline-flex;
+                cursor: pointer;
+
+                &:hover,
+                &.liked {
+                    background-color: red;
+                    color: white;
+                }
+            }
+
+            .likesCount {
+                margin-right: 0.6em;
+                font-weight: bold;
+            }
         }
 
         .newCommentForm {

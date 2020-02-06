@@ -1,21 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import '../style/login.scss';
 
 class Login extends React.Component {
     state = {
         email: '',
         password: ''
-    }
-
-    gotoRegister = (e) => {
-        e.preventDefault();
-        window.location.pathname = '/register';
-    }
-
-    gotoBrowse = (e) => {
-        e.preventDefault();
-        window.location.pathname = '/posts';
     }
 
     handleEmailChange = (event) => {
@@ -51,8 +42,8 @@ class Login extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleLogin} className='loginWrapper'>
-                <button type='button' className='browseButton' onClick={this.gotoBrowse}><span role='img' aria-label='back'>◀</span> Back</button>
-                <button type='button' className='registerButton' onClick={this.gotoRegister}><span role='img' aria-label='create'>📝</span> Register</button>
+                <Link to='/posts' type='button' className='browseButton'><span role='img' aria-label='back'>◀</span> Back</Link>
+                <Link to='/register' type='button' className='registerButton'><span role='img' aria-label='create'>📝</span> Register</Link>
                 <label>Email:</label>
                 <input onChange={this.handleEmailChange} defaultValue={this.state.email}></input>
                 <label>Password:</label>
